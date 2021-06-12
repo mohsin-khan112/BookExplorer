@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">AcropolisAssignment</string>
+
+    <!-- Browse Book Screen-->
+    <string name="browse_book_screen_label">Explore Books</string>
+    <string name="search">Search</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_out">Sing Out</string>
+    <string name="favourite_genre">My Favourite Genres</string>
+    <string name="favourite_books">My Favourite Books</string>
+    <string name="search_book_hint">Search Books</string>
+    <string name="add_book">Add Book</string>
+    <string name="select_genre_title">Select Genre to explore books</string>
+    <string name="no_book_found_for_genre">No Books found for genre %s</string>
+    <string name="no_book_found_for_search">No Books found for %s</string>
+    <string name="book_will_available_message">It will be visible here once it is available</string>
+
+    <!-- User Screen -->
+    <string name="first_name_hint">Enter your First Name</string>
+    <string name="last_name_hint">Enter your Last Name</string>
+    <string name="email_hint">Enter your Email</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="confirm_password_hint">Re-Enter Password</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="sign_in_text">Sign In</string>
+
+    <!-- View Book Screen -->
+    <string name="view_book_screen_label">View Book</string>
+    <string name="about_label">About</string>
+    <string name="comments_label">Comments</string>
+    <string name="no_comments_label">No Comments available for this Book</string>
+    <string name="add_comment_hint">Type here to comment...</string>
+    <string name="mark_favourite_label">Mark Book Favourite</string>
+    <string name="add_notes_label">Add Notes</string>
+    <string name="view_notes_label">View Notes</string>
+
+    <!-- Add Book Screen-->
+    <string name="add_book_screen_label">Add Book</string>
+    <string name="add_book_name_hint">Enter Book Name</string>
+    <string name="add_description_hint">Enter Description</string>
+    <string name="select_genre">Select Genre</string>
+
+    <!-- Add Notes Screen-->
+    <string name="add_notes_screen_label">Add Note</string>
+    <string name="add_note_title_hint">Enter Note title</string>
+    <string name="add_note_description_hint">Write something about note</string>
+
+    <!-- View Notes Screen-->
+    <string name="no_notes_message">No notes available for this book.</string>
+
+</resources>

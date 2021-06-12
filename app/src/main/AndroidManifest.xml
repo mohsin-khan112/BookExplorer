@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.acropolisassignment">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PICK" />
+
+            <data android:mimeType="image/*" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".AcropolisAssignmentApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AcropolisAssignmentBaseTheme">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name=".note.ViewNotesActivity"
+            android:label="@string/view_notes_label"
+            android:parentActivityName=".book.ViewBookActivity" />
+
+        <activity
+            android:name=".note.AddNotesActivity"
+            android:label="@string/add_notes_label"
+            android:parentActivityName=".book.ViewBookActivity" />
+
+        <activity
+            android:name=".book.AddBookActivity"
+            android:parentActivityName=".book.AddBookActivity" />
+        <activity
+            android:name=".book.ViewBookActivity"
+            android:label="@string/view_book_screen_label"
+            android:launchMode="singleTop"
+            android:parentActivityName=".bookBrowsing.BookBrowsingActivity" />
+        <activity
+            android:name=".user.SignInActivity"
+            android:label="@string/sign_in"
+            android:parentActivityName=".bookBrowsing.BookBrowsingActivity" />
+        <activity
+            android:name=".user.SignUpActivity"
+            android:label="@string/sign_up"
+            android:parentActivityName=".bookBrowsing.BookBrowsingActivity" />
+        <activity
+            android:name=".bookBrowsing.BookBrowsingActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

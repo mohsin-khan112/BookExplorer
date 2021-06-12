@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".book.ViewBookActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_viewBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/Platform.MaterialComponents.Light" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:descendantFocusability="blocksDescendants"
+        app:layout_constraintBottom_toTopOf="@+id/fab_viewBook_addComment"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_viewBook">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_viewBook_coverImage"
+                android:layout_width="140dp"
+                android:layout_height="230dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_viewBook_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:maxLines="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_viewBook_coverImage"
+                app:layout_constraintTop_toTopOf="@+id/iv_viewBook_coverImage" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_viewBook_genreType"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/fab_viewBook_markGenreFavourite"
+                app:layout_constraintEnd_toStartOf="@id/fab_viewBook_markGenreFavourite"
+                app:layout_constraintStart_toStartOf="@+id/tv_viewBook_name"
+                app:layout_constraintTop_toTopOf="@+id/fab_viewBook_markGenreFavourite">
+
+                <TextView
+                    android:id="@+id/tv_viewBook_genreType"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="13sp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_viewBook_markGenreFavourite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_favorite_empty"
+                app:fabSize="mini"
+                android:onClick="markGenreFavourite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_viewBook_name" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_viewBook_bookFavourite"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/fab_viewBook_markBookFavourite"
+                app:layout_constraintEnd_toStartOf="@id/fab_viewBook_markBookFavourite"
+                app:layout_constraintStart_toStartOf="@+id/tv_viewBook_name"
+                app:layout_constraintTop_toTopOf="@+id/fab_viewBook_markBookFavourite">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="@string/mark_favourite_label"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="13sp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_viewBook_markBookFavourite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_favorite_empty"
+                app:fabSize="mini"
+                android:onClick="markBookFavourite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mcv_viewBook_genreType" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_viewBook_addNotes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                app:layout_constraintEnd_toStartOf="@id/btn_viewBook_viewNotes"
+                android:text="@string/add_notes_label"
+                android:textAllCaps="false"
+                android:textSize="13sp"
+                android:onClick="addNote"
+                app:cornerRadius="16dp"
+                app:layout_constraintStart_toStartOf="@id/tv_viewBook_name"
+                app:layout_constraintTop_toBottomOf="@id/mcv_viewBook_bookFavourite" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_viewBook_viewNotes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="4dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/view_notes_label"
+                android:textAllCaps="false"
+                android:textSize="13sp"
+                app:cornerRadius="16dp"
+                android:onClick="viewNote"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_viewBook_addNotes"
+                app:layout_constraintTop_toBottomOf="@id/mcv_viewBook_bookFavourite" />
+
+            <androidx.constraintlayout.widget.Group
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/group_viewBook_buttons"
+                app:constraint_referenced_ids="mcv_viewBook_genreType,mcv_viewBook_bookFavourite,fab_viewBook_markGenreFavourite,fab_viewBook_markBookFavourite,btn_viewBook_addNotes,btn_viewBook_viewNotes"/>
+
+            <TextView
+                android:id="@+id/tv_viewBook_descriptionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/about_label"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_viewBook_coverImage" />
+
+            <TextView
+                android:id="@+id/tv_viewBook_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_viewBook_descriptionLabel" />
+
+            <TextView
+                android:id="@+id/tv_viewBook_commentLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorCommentLabelBackground"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                android:text="@string/comments_label"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_viewBook_description" />
+
+            <TextView
+                android:id="@+id/tv_viewBook_noComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text="@string/no_comments_label"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/tv_viewBook_commentLabel" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_viewBook_commentList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:padding="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_viewBook_noComments" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <EditText
+        android:id="@+id/et_viewBook_commentBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/add_comment_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fab_viewBook_addComment"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_viewBook_addComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="addComment"
+        android:src="@drawable/ic_send"
+        android:tint="@color/white"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_viewBook_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="et_viewBook_commentBox,fab_viewBook_addComment" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
