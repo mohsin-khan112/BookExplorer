@@ -89,27 +89,27 @@ class BookBrowsingActivity : AppCompatActivity(), BookListAdapter.OnItemClickLis
         viewModel = ViewModelProviders.of(this).get(BookBrowsingViewModel::class.java)
         viewModel?.fetchGenreList()
         viewModel?.getGenreListLiveData()?.observe(this,
-            Observer<List<Genre>> { genreList ->
-                Log.d(TAG, "setupViewModel: Genre list size : ${genreList.size}")
-                this.genreList = genreList
-                setupGenreSpinner(genreList)
-            })
+                Observer<List<Genre>> { genreList ->
+                    Log.d(TAG, "setupViewModel: Genre list size : ${genreList.size}")
+                    this.genreList = genreList
+                    setupGenreSpinner(genreList)
+                })
 
         viewModel?.getBookListLiveData()?.observe(this,
-            Observer<List<GenreBook>> { bookList ->
-                Log.d(TAG, "setupViewModel: Book List size : ${bookList.size}")
-                if (bookList.isEmpty()) {
-                    tvNoBookFoundDescription.visibility = View.VISIBLE
-                    tvNoBookFoundMessage.visibility = View.VISIBLE
-                    bookRecyclerView.visibility = View.GONE
-                    handleEmptyMessage()
-                } else {
-                    tvNoBookFoundDescription.visibility = View.GONE
-                    tvNoBookFoundMessage.visibility = View.GONE
-                    bookRecyclerView.visibility = View.VISIBLE
-                    bookListAdapter?.setBookCollection(bookList)
-                }
-            })
+                Observer<List<GenreBook>> { bookList ->
+                    Log.d(TAG, "setupViewModel: Book List size : ${bookList.size}")
+                    if (bookList.isEmpty()) {
+                        tvNoBookFoundDescription.visibility = View.VISIBLE
+                        tvNoBookFoundMessage.visibility = View.VISIBLE
+                        bookRecyclerView.visibility = View.GONE
+                        handleEmptyMessage()
+                    } else {
+                        tvNoBookFoundDescription.visibility = View.GONE
+                        tvNoBookFoundMessage.visibility = View.GONE
+                        bookRecyclerView.visibility = View.VISIBLE
+                        bookListAdapter?.setBookCollection(bookList)
+                    }
+                })
     }
 
     private fun setupGenreSpinner(genreList: List<Genre>) {
@@ -122,10 +122,10 @@ class BookBrowsingActivity : AppCompatActivity(), BookListAdapter.OnItemClickLis
             }
 
             override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
             ) {
                 selectedGenre = genreList[position]
                 fetchBooksByGenre()
@@ -184,9 +184,9 @@ class BookBrowsingActivity : AppCompatActivity(), BookListAdapter.OnItemClickLis
             R.id.menuItem_signOut -> {
                 val pref = getSharedPreferences("acropolis-pref", Context.MODE_PRIVATE)
                 pref.edit()
-                    .putBoolean("login_status", false)
-                    .putInt("user_id", 0)
-                    .apply()
+                        .putBoolean("login_status", false)
+                        .putInt("user_id", 0)
+                        .apply()
                 handleViewVisibility()
             }
         }
@@ -223,7 +223,7 @@ class BookBrowsingActivity : AppCompatActivity(), BookListAdapter.OnItemClickLis
     private fun setSearchViewTextChangeListener(searchView: SearchView?) {
         searchView?.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener,
 
-            SearchView.OnQueryTextListener {
+                SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
@@ -266,10 +266,11 @@ class BookBrowsingActivity : AppCompatActivity(), BookListAdapter.OnItemClickLis
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (data != null && data.getIntExtra("user_id", 0) != 0) {
-            when (requestCode) {
 
-                USER_SCREEN_CODE -> {
+        when (requestCode) {
+
+            USER_SCREEN_CODE -> {
+                if (data != null && data.getIntExtra("user_id", 0) != 0) {
                     val pref = getSharedPreferences("acropolis-pref", Context.MODE_PRIVATE)
                     pref.edit()
                             .putBoolean("login_status", true)
@@ -277,10 +278,10 @@ class BookBrowsingActivity : AppCompatActivity(), BookListAdapter.OnItemClickLis
                             .apply()
                     handleViewVisibility()
                 }
+            }
 
-                ADD_BOOK_SCREEN_CODE -> {
-                    fetchBooksByGenre()
-                }
+            ADD_BOOK_SCREEN_CODE -> {
+                fetchBooksByGenre()
             }
         }
 
