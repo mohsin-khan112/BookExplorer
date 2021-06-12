@@ -266,19 +266,21 @@ class BookBrowsingActivity : AppCompatActivity(), BookListAdapter.OnItemClickLis
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when (requestCode) {
+        if (data != null && data.getIntExtra("user_id", 0) != 0) {
+            when (requestCode) {
 
-            USER_SCREEN_CODE -> {
-                val pref = getSharedPreferences("acropolis-pref", Context.MODE_PRIVATE)
-                pref.edit()
-                    .putBoolean("login_status", true)
-                    .putInt("user_id", data?.getIntExtra("user_id", 0) ?: 0)
-                    .apply()
-                handleViewVisibility()
-            }
+                USER_SCREEN_CODE -> {
+                    val pref = getSharedPreferences("acropolis-pref", Context.MODE_PRIVATE)
+                    pref.edit()
+                            .putBoolean("login_status", true)
+                            .putInt("user_id", data?.getIntExtra("user_id", 0) ?: 0)
+                            .apply()
+                    handleViewVisibility()
+                }
 
-            ADD_BOOK_SCREEN_CODE -> {
-                fetchBooksByGenre()
+                ADD_BOOK_SCREEN_CODE -> {
+                    fetchBooksByGenre()
+                }
             }
         }
 
